@@ -1,6 +1,7 @@
 import React from 'react';
 import FlightContainer from './FlightContainer';
 import AccommodationContainer from './AccommodationContainer'
+import NewFlightForm from './NewFlightForm'
 
 export default class Main extends React.Component {
   state = {
@@ -12,6 +13,7 @@ export default class Main extends React.Component {
 			<div>
 				This is the main container
         <FlightContainer />
+        <NewFlightForm />
         <AccommodationContainer />
 			</div>
 		)

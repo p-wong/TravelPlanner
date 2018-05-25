@@ -7,7 +7,7 @@ export default class Flight extends React.Component {
       <div>
         <h3>Your Flights Here</h3>
         <p>1st flight</p>
-        </div>
+      </div>
     )
   }
 
