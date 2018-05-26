@@ -10,5 +10,4 @@ export default class Flight extends React.Component {
       </div>
     )
   }
-
 }

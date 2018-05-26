@@ -8,41 +8,24 @@ export default class NewFlightForm extends React.Component {
         <form onSubmit={this.props.handleSubmit}>
           <label>
           Flight Number:
-          <input type="text" onChange={this.props.handleChange} />
+          <input type="text" name="flightNumber" onChange={this.props.handleChange} />
           </label>
 
           <div>
             <p>Outbound Flight</p>
             <label>
             Departure City:
-            <input type="text" onChange={this.props.handleChange} />
+            <input type="text" name="outboundDepartureCity" onChange={this.props.handleChange} />
+            </label>
+
+            <label>
+            Arrival City:
+            <input type="text" name="outboundArrivalCity" onChange={this.props.handleChange} />
             </label>
 
             <label>
             Departure Date:
-            <input type="text" onChange={this.props.handleChange} />
-            </label>
-
-            <label>
-            Departure Time:
-            <input type="text" onChange={this.props.handleChange} />
-            </label>
-          </div>
-
-          <div>
-            <label>
-            Arrival City:
-            <input type="text" onChange={this.props.handleChange} />
-            </label>
-
-            <label>
-            Arrival Date:
-            <input type="text" onChange={this.props.handleChange} />
-            </label>
-
-            <label>
-            Arrival Time:
-            <input type="text" onChange={this.props.handleChange} />
+            <input type="text" name="outboundDepartureDate" onChange={this.props.handleChange} />
             </label>
           </div>
 
@@ -50,35 +33,19 @@ export default class NewFlightForm extends React.Component {
             <p>Return Flight</p>
             <label>
             Departure City:
-            <input type="text" onChange={this.props.handleChange} />
+            <input type="text" name="returnDepartureCity" onChange={this.props.handleChange} />
+            </label>
+
+            <label>
+            Arrival City:
+            <input type="text" name="returnArrivalCity" onChange={this.props.handleChange} />
             </label>
 
             <label>
             Departure Date:
-            <input type="text" onChange={this.props.handleChange} />
+            <input type="text" name="returnDepartureDate" onChange={this.props.handleChange} />
             </label>
 
-            <label>
-            Departure Time:
-            <input type="text" onChange={this.props.handleChange} />
-            </label>
-          </div>
-
-          <div>
-            <label>
-            Arrival City:
-            <input type="text" onChange={this.props.handleChange} />
-            </label>
-
-            <label>
-            Arrival Date:
-            <input type="text" onChange={this.props.handleChange} />
-            </label>
-
-            <label>
-            Arrival Time:
-            <input type="text" onChange={this.props.handleChange} />
-            </label>
           </div>
           <input type="submit" value='Add Flight' />
         </form>

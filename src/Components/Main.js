@@ -13,7 +13,6 @@ export default class Main extends React.Component {
 			<div>
 				This is the main container
         <FlightContainer />
-        <NewFlightForm />
         <AccommodationContainer />
 			</div>
 		)
