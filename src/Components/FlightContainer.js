@@ -1,14 +1,19 @@
 import React from 'react';
-import Flight from './Flight'
-import NewFlightForm from './NewFlightForm'
+import NewFlightForm from './NewFlightForm';
+import FlightList from './FlightList'
 
 export default class FlightContainer extends React.Component {
 
     state = {
       flightSearchResults: [],
+      outboundFlight: {},
+      returnFlight: {},
+      airlines: ['American Airlines', 'Delta Air Lines', 'United Airlines', 'Alaska Airlines', 'Sun Country Airlines'],
       flights: [],
       formClicked: false,
       flightNumber: '',
+      outboundAirline: '',
+      returnAirline: '',
 
       outboundDepartureCity: '',
       outboundDepartureDate: '',
@@ -33,34 +38,44 @@ export default class FlightContainer extends React.Component {
       })
     }
 
-    handleSubmit = (e) => {
+    handleOutboundDateChange = (e) => {
+      this.setState({
+        outboundDepartureDate: e.toISOString()
+      })
+    }
+
+    handleReturnDateChange = (e) => {
+      this.setState({
+        returnDepartureDate: e.toISOString()
+      })
+    }
+
+    handleOutboundSubmit = (e) => {
       e.preventDefault();
       const depart = this.state.outboundDepartureCity;
       const arrive = this.state.outboundArrivalCity;
-      const date = this.state.outboundDepartureDate;
+      const date = this.state.outboundDepartureDate.split('T')[0].split('-').join('');
       fetch(`http://developer.goibibo.com/api/search/?app_id=1f3b1d0a&app_key=7d5cc7873609302a0b5eec7c28833580&format=json&source=${depart}&destination=${arrive}&dateofdeparture=${date}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
       .then(res => res.json())
       .then(json => {
-        this.setState({ flightSearchResults: json.data.onwardflights });
+        this.setState({ outboundFlight: json.data.onwardflights.filter(flight => flight.airline === this.state.outboundAirline && flight.deptime === this.state.outboundDepartureTime)[0] })
       })
-    }
+      }
 
-    // NOTE: THIS FIND MATCHING FLIGHTS FEATURE IS NOT WORKING RIGHT NOW, NEEDS TO BE INVOKED SOMEWHERE OTHER THAN RENDER FLIGHTS I THINK
-
-    findMatchingFlights = () => {
-      const filteredFlights = this.state.flightSearchResults.filter(flight => {
-        return (flight.origin === this.state.outboundDepartureCity && flight.destination === this.state.outboundArrivalCity)
+    handleReturnSubmit = (e) => {
+      e.preventDefault();
+      const depart = this.state.returnDepartureCity;
+      const arrive = this.state.returnArrivalCity;
+      const date = this.state.returnDepartureDate.split('T')[0].split('-').join('');
+      fetch(`http://developer.goibibo.com/api/search/?app_id=1f3b1d0a&app_key=7d5cc7873609302a0b5eec7c28833580&format=json&source=${depart}&destination=${arrive}&dateofdeparture=${date}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({ returnFlight: json.data.onwardflights.filter(flight => flight.airline === this.state.returnAirline && flight.deptime === this.state.returnDepartureTime)[0] })
       })
-      this.setState({flights: filteredFlights});
-    }
-
-    renderFlights = () => {
-      this.findMatchingFlights;
-      return < Flight />
-    }
+      }
 
     renderNewFlightForm = () => {
-      return < NewFlightForm handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+      return < NewFlightForm handleChange={this.handleChange} handleOutboundDateChange={this.handleOutboundDateChange} handleReturnDateChange={this.handleReturnDateChange} handleOutboundSubmit={this.handleOutboundSubmit} handleReturnSubmit={this.handleReturnSubmit} airlines={this.state.airlines} outboundAirline={this.state.outboundAirline} returnAirline={this.state.returnAirline} date={this.state.outboundDepartureDate}/>
     }
 
     handleFormClicked = () => {
@@ -76,7 +91,8 @@ export default class FlightContainer extends React.Component {
         Here is the flight container.
         <button onClick={this.handleFormClicked}>Add a new flight</button>
         {this.state.formClicked ? this.renderNewFlightForm() : null}
-        {this.renderFlights()}
+        < FlightList outboundFlight={this.state.outboundFlight} returnFlight={this.state.returnFlight} outboundDate={this.state.outboundDepartureDate} returnDate={this.state.returnDepartureDate}/>
         </div>
        )
-     }}
+     }
+   }

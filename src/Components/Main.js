@@ -1,7 +1,6 @@
 import React from 'react';
 import FlightContainer from './FlightContainer';
-import AccommodationContainer from './AccommodationContainer'
-import NewFlightForm from './NewFlightForm'
+import AccommodationContainer from './AccommodationContainer';
 
 export default class Main extends React.Component {
   state = {

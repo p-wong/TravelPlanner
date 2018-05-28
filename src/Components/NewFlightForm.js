@@ -1,16 +1,15 @@
 import React from 'react';
+import { DatePickerInput } from 'rc-datepicker';
+
+
+import 'rc-datepicker/lib/style.css';
 
 export default class NewFlightForm extends React.Component {
   render () {
     return (
       <div>
         <h3>Please enter some flight info</h3>
-        <form onSubmit={this.props.handleSubmit}>
-          <label>
-          Flight Number:
-          <input type="text" name="flightNumber" onChange={this.props.handleChange} />
-          </label>
-
+        <form onSubmit={this.props.handleOutboundSubmit}>
           <div>
             <p>Outbound Flight</p>
             <label>
@@ -25,10 +24,31 @@ export default class NewFlightForm extends React.Component {
 
             <label>
             Departure Date:
-            <input type="text" name="outboundDepartureDate" onChange={this.props.handleChange} />
+            <DatePickerInput className='my-custom-datepicker-component' small={true} autoClose={true} value={this.props.outboundDepartureDate}
+              name="outboundDepartureDate" onChange={this.props.handleOutboundDateChange}/>
             </label>
-          </div>
 
+            <label>
+            Airline:
+              <select name="outboundAirline" onChange={this.props.handleChange}>
+                <option> -- </option>
+                {this.props.airlines.map((airline, i) => {
+                  return (
+                  <option key={i}> {airline} </option>
+                  );
+                  })}
+              </select>
+            </label>
+
+            <label>
+            Departure Time:
+            <input type="text" name="outboundDepartureTime" onChange={this.props.handleChange} />
+            </label>
+
+          </div>
+          <input type="submit" value='Add Flight' />
+        </form>
+        <form onSubmit={this.props.handleReturnSubmit}>
           <div>
             <p>Return Flight</p>
             <label>
@@ -43,7 +63,24 @@ export default class NewFlightForm extends React.Component {
 
             <label>
             Departure Date:
-            <input type="text" name="returnDepartureDate" onChange={this.props.handleChange} />
+            <DatePickerInput className='my-custom-datepicker-component' name="returnDepartureDate" small={true} autoClose={true} value={this.props.returnDepartureDate} onChange={this.props.handleReturnDateChange}/>
+            </label>
+
+            <label>
+            Airline:
+              <select name="returnAirline" onChange={this.props.handleChange}>
+                <option> -- </option>
+                {this.props.airlines.map((airline, i) => {
+                  return (
+                  <option key={i}> {airline} </option>
+                  );
+                  })}
+              </select>
+            </label>
+
+            <label>
+            Departure Time:
+            <input type="text" name="returnDepartureTime" onChange={this.props.handleChange} />
             </label>
 
           </div>
