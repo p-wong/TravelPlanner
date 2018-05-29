@@ -7,25 +7,25 @@ const OutboundFlight = (props) => {
           <tbody>
             <tr>
               <th>
-                <h4 className="ui center aligned header">AIRLINE</h4>
+                <h3 className="ui center aligned header">AIRLINE</h3>
               </th>
               <th>
-                <h4 className="ui center aligned header">ORIGIN</h4>
+                <h3 className="ui center aligned header">ORIGIN</h3>
               </th>
               <th>
-                <h4 className="ui center aligned header">DATE</h4>
+                <h3 className="ui center aligned header">DATE</h3>
               </th>
               <th>
-                <h4 className="ui center aligned header">DEPART TIME</h4>
+                <h3 className="ui center aligned header">DEPART TIME</h3>
               </th>
               <th>
-                <h4 className="ui center aligned header">DESTINATION</h4>
+                <h3 className="ui center aligned header">DESTINATION</h3>
               </th>
               <th>
-                <h4 className="ui center aligned header">ARRIVE TIME</h4>
+                <h3 className="ui center aligned header">ARRIVE TIME</h3>
               </th>
               <th>
-                <h4 className="ui center aligned header">DURATION</h4>
+                <h3 className="ui center aligned header">DURATION</h3>
               </th>
             </tr>
 

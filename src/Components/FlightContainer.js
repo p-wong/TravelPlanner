@@ -87,7 +87,7 @@ export default class FlightContainer extends React.Component {
      render () {
        console.log(this.state)
        return (
-         <div>
+         <div class="ui-grid-container">
         Here is the flight container.
         <button onClick={this.handleFormClicked}>Add a new flight</button>
         {this.state.formClicked ? this.renderNewFlightForm() : null}

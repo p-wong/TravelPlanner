@@ -7,7 +7,7 @@ import 'rc-datepicker/lib/style.css';
 export default class NewFlightForm extends React.Component {
   render () {
     return (
-      <div>
+      <div className="ui raised segment">
         <h3>Please enter some flight info</h3>
         <form onSubmit={this.props.handleOutboundSubmit}>
           <div>
