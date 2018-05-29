@@ -1,6 +1,6 @@
 import React from 'react';
 import NewFlightForm from './NewFlightForm';
-import FlightList from './FlightList'
+import FlightList from './FlightList';
 
 export default class FlightContainer extends React.Component {
 
@@ -40,13 +40,13 @@ export default class FlightContainer extends React.Component {
 
     handleOutboundDateChange = (e) => {
       this.setState({
-        outboundDepartureDate: e.toISOString()
+        outboundDepartureDate: e
       })
     }
 
     handleReturnDateChange = (e) => {
       this.setState({
-        returnDepartureDate: e.toISOString()
+        returnDepartureDate: e
       })
     }
 
@@ -54,7 +54,7 @@ export default class FlightContainer extends React.Component {
       e.preventDefault();
       const depart = this.state.outboundDepartureCity;
       const arrive = this.state.outboundArrivalCity;
-      const date = this.state.outboundDepartureDate.split('T')[0].split('-').join('');
+      const date = this.state.outboundDepartureDate.toISOString().split('T')[0].split('-').join('');
       fetch(`http://developer.goibibo.com/api/search/?app_id=1f3b1d0a&app_key=7d5cc7873609302a0b5eec7c28833580&format=json&source=${depart}&destination=${arrive}&dateofdeparture=${date}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
       .then(res => res.json())
       .then(json => {
@@ -66,7 +66,7 @@ export default class FlightContainer extends React.Component {
       e.preventDefault();
       const depart = this.state.returnDepartureCity;
       const arrive = this.state.returnArrivalCity;
-      const date = this.state.returnDepartureDate.split('T')[0].split('-').join('');
+      const date = this.state.returnDepartureDate.toISOString().split('T')[0].split('-').join('');
       fetch(`http://developer.goibibo.com/api/search/?app_id=1f3b1d0a&app_key=7d5cc7873609302a0b5eec7c28833580&format=json&source=${depart}&destination=${arrive}&dateofdeparture=${date}&seatingclass=E&adults=1&children=0&infants=0&counter=100`)
       .then(res => res.json())
       .then(json => {
@@ -91,7 +91,8 @@ export default class FlightContainer extends React.Component {
         Here is the flight container.
         <button onClick={this.handleFormClicked}>Add a new flight</button>
         {this.state.formClicked ? this.renderNewFlightForm() : null}
-        < FlightList outboundFlight={this.state.outboundFlight} returnFlight={this.state.returnFlight} outboundDate={this.state.outboundDepartureDate} returnDate={this.state.returnDepartureDate}/>
+        {this.state.outboundFlight ? < FlightList outboundFlight={this.state.outboundFlight} returnFlight={this.state.returnFlight} outboundDate={this.state.outboundDepartureDate} returnDate={this.state.returnDepartureDate}/> : alert('Oops, we didn\'t find any flights matching that search. Refresh the page and try again')}
+
         </div>
        )
      }
