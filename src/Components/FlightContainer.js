@@ -1,6 +1,7 @@
 import React from 'react';
 import NewFlightForm from './NewFlightForm'
 import Flight from './Flight'
+import { Paper } from 'material-ui'
 
 export default class FlightContainer extends React.Component {
 
@@ -52,13 +53,14 @@ export default class FlightContainer extends React.Component {
   }
 
   render () {
+    console.log(this.props.styles)
     return (
-      <div>
-      Here is the flight container.
-      <button onClick={this.handleFormClicked}>Add a new flight</button>
-      {this.state.formClicked ? this.renderNewFlightForm() : null}
-      {this.renderFlights()}
-      </div>
+      <Paper style={this.props.styles.mainContainer}>
+        Here is the flight container.
+        <button onClick={this.handleFormClicked}>Add a new flight</button>
+        {this.state.formClicked ? this.renderNewFlightForm() : null}
+        {this.renderFlights()}
+      </Paper>
     )
   }
 
