@@ -22,6 +22,18 @@
   font-size: large;
 }
 
+.calendar {
+  width: 175px;
+}
+
+.button {
+  font-size: 1.0em;
+  background-color: grey;
+  padding: 5px;
+  color: white;
+}
+
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
