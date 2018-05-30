@@ -17,20 +17,34 @@ class PackingList extends React.Component {
   // }
 
   renderPackingCategory = () => {
+    const styles = {
+      container: {
+        'margin-top': '10px',
+        'margin-left': '0px',
+        'margin-right': '10px',
+        'margin-bottom': '10px',
+      },
+      heading: {
+        'padding': '10px'
+      }
+    };
+
     return (
-      this.props.categoryList.map(category => {
+      
+      <Grid container spacing={12}>
+      {this.props.categoryList.map(category => {
         return (
-          <Grid container spacing={24}>
-            <Grid item xs={6} sm={3}>
-              <Paper>{category}</Paper>
+          <Grid item xs={6} sm={3}>
+            <Paper style={styles.container}>
+              <Typography variant="title" style={styles.heading}>{category}</Typography><br/>
               {category === "Clothes" ? this.props.renderClothes() :
-                (category === "Toiletries" ? this.renderToiletries() :
-                  (category === "Electronics" ? this.renderElectronics() :
-                    this.renderMiscellaneous()))}
-            </Grid>
+              (category === "Toiletries" ? this.renderToiletries() :
+              (category === "Electronics" ? this.renderElectronics() : this.renderMiscellaneous()))}
+            </Paper>
           </Grid>
         )
-      })
+      })}
+      </Grid>
     )
   }
 
@@ -41,7 +55,7 @@ class PackingList extends React.Component {
       this.props.toiletriesList.map(toiletries => {
         return (
           <span>
-            <Checkbox checked={this.state.checked} onClick={this.handleCheck}/>
+            <Checkbox checked={this.props.checked} onClick={this.handleCheck}/>
             <Typography variant="body2">{toiletries}</Typography>
             <IconButton aria-label="Edit"><EditIcon /></IconButton>
             <IconButton aria-label="Delete"><DeleteIcon /></IconButton>
@@ -56,7 +70,7 @@ class PackingList extends React.Component {
       this.props.electronicsList.map(electronics => {
         return (
           <span>
-            <Checkbox checked={this.state.checked} onClick={this.handleCheck}/>
+            <Checkbox checked={this.props.checked} onClick={this.handleCheck}/>
             <Typography variant="body2">{electronics}</Typography>
             <IconButton aria-label="Edit"><EditIcon /></IconButton>
             <IconButton aria-label="Delete"><DeleteIcon /></IconButton>
@@ -71,7 +85,7 @@ class PackingList extends React.Component {
       this.props.miscellaneousList.map(miscellaneous => {
         return (
           <span>
-            <Checkbox checked={this.state.checked} onClick={this.handleCheck}/>
+            <Checkbox checked={this.props.checked} onClick={this.handleCheck}/>
             <Typography variant="body2">{miscellaneous}</Typography>
             <IconButton aria-label="Edit"><EditIcon /></IconButton>
             <IconButton aria-label="Delete"><DeleteIcon /></IconButton>

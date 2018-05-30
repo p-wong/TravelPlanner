@@ -17,11 +17,13 @@ class PackingContainer extends React.Component {
     toiletriesList: [],
     electronicsList: [],
     miscellaneousList: [],
-    checked: false,
     editing: false,
-    clothes: '',
     deleting: false,
+    clothes: '',
   }
+
+  //---------------------------------------------------------------------------------------------------------
+  // ADDING ITEMS TO EACH CATEGORY LIST
 
   handleFormClick = () => {
     this.setState({
@@ -41,31 +43,8 @@ class PackingContainer extends React.Component {
     })
   }
 
-  // newItem = () => {
-  //   const listItem = {}
-  //   listItem[this.state.currentCategory] = this.state.packingItem
-  //   return listItem
-  // }
-
-  // handleItemSubmit = (event) => {
-  //   event.preventDefault()
-  //
-  //   this.setState({
-  //     packingList: [...this.state.packingList, this.newItem()]
-  //   }, () => {
-  //     this.setState({
-  //
-  //     })
-  //   })
-  // }
-
   handleItemSubmit = (event) => {
     event.preventDefault()
-
-    // const categoryList = this.state.currentCategory.toLowerCase().concat('List')
-    // console.log(typeof categoryList)
-    // console.log(this.state.clothesList)
-    // console.log(this.state.categoryList)
 
     this.state.currentCategory === 'Clothes' ?
     this.setState({
@@ -90,12 +69,7 @@ class PackingContainer extends React.Component {
 
 
   //---------------------------------------------------------------------------------------------------------
-
-  handleCheck = () => {
-    this.setState({
-      checked: !this.state.checked
-    })
-  }
+  // EDIT / DELETE FOR CLOTHES LIST
 
   handleEditClick = () => {
     this.setState({
@@ -133,7 +107,6 @@ class PackingContainer extends React.Component {
       this.state.clothesList.map(clothes => {
         return (
           <span>
-            <Checkbox checked={this.state.checked} onClick={this.handleCheck}/>
             {this.state.editing
               ?
               <form onSubmit={(e) => (e.preventDefault(), this.handleEditSubmit(clothes))}>
@@ -141,7 +114,7 @@ class PackingContainer extends React.Component {
                 <IconButton type="submit" aria-label="Save"><Save /></IconButton>
               </form>
               :
-              <Typography variant="body2">{clothes}</Typography>
+              <Typography variant="subheading">{clothes}</Typography>
             }
             <IconButton aria-label="Edit" onClick={this.handleEditClick}><EditIcon /></IconButton>
             <IconButton aria-label="Delete" onClick={() => this.handleDeleteClick(clothes)}><DeleteIcon /></IconButton>
@@ -150,7 +123,6 @@ class PackingContainer extends React.Component {
       })
     )
   }
-
 
   //---------------------------------------------------------------------------------------------------------
 
@@ -199,6 +171,7 @@ class PackingContainer extends React.Component {
           <Typography variant="display1">Packing List</Typography>
           <Button variant="raised" onClick={this.handleFormClick}>Add an item</Button>
           { this.state.formClicked ? this.renderPackingListForm() : null}
+          <br/>
           { this.renderPackingList() }
         </Paper>
       </div>

@@ -33,13 +33,13 @@ class Main extends React.Component {
         <Nav />
         <Grid container>
           <Grid item xs={12}>
+            <FlightContainer styles={this.styles}/>
+          </Grid>
+          <Grid item xs={12}>
             <AccommodationContainer styles={this.styles}/>
           </Grid>
           <Grid item xs={12}>
             {<PackingContainer styles={this.styles}/>}
-          </Grid>
-          <Grid item xs={12}>
-            {/*<FlightContainer styles={this.styles}/>*/}
           </Grid>
         </Grid>
       </div>

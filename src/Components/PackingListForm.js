@@ -10,11 +10,16 @@ class PackingListForm extends React.Component {
   )}
 
   renderSelect = () => {
+    const styles = {
+      customWidth: {
+        width: 180,
+      },
+    };
     return (
       <form autoComplete="off">
         <FormControl>
           <InputLabel htmlFor="">Category</InputLabel>
-          <Select value={this.props.currentCategory} onChange={this.props.handleCurrentCategory} autowidth >
+          <Select value={this.props.currentCategory} onChange={this.props.handleCurrentCategory} style={styles.customWidth} >
             <MenuItem value=""><em>None</em></MenuItem>
             {this.renderCategoryList()}
           </Select>
@@ -39,7 +44,9 @@ class PackingListForm extends React.Component {
   render () {
     return (
       <div>
-        <Typography variant="subheading">Packing List Form</Typography>
+        <br/>
+        <Typography variant="title">Enter an Item</Typography>
+        <br/>
         {this.renderSelect()}
         {this.renderPackingItem()}
       </div>

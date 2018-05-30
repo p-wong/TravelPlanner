@@ -1,8 +1,7 @@
 import React from 'react';
 import FlightList from './FlightList';
 import NewFlightForm from './NewFlightForm'
-import Flight from './Flight'
-import { Paper } from 'material-ui'
+import { Paper, Typography, Button } from 'material-ui'
 
 export default class FlightContainer extends React.Component {
 
@@ -91,8 +90,8 @@ export default class FlightContainer extends React.Component {
        return (
         <Paper style={this.props.styles.mainContainer}>
          <div class="ui-grid-container">
-          Here is the flight container.
-          <button onClick={this.handleFormClicked}>Add a new flight</button>
+          <Typography variant="display1">Flights</Typography>
+          <Button variant="raised" onClick={this.handleFormClicked}>Add a new flight</Button>
           {this.state.formClicked ? this.renderNewFlightForm() : null}
           {this.state.outboundFlight ? < FlightList outboundFlight={this.state.outboundFlight} returnFlight={this.state.returnFlight} outboundDate={this.state.outboundDepartureDate} returnDate={this.state.returnDepartureDate}/> : alert('Oops, we didn\'t find any flights matching that search. Refresh the page and try again')}
         </div>
