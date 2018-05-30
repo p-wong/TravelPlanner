@@ -3,8 +3,6 @@ import React from 'react';
 const ReturnFlight = (props) => {
     return (
 
-      <table className="ui celled striped padded">
-        <tbody>
 
           <tr>
             <td>{props.flight.airline}</td>
@@ -16,8 +14,6 @@ const ReturnFlight = (props) => {
             <td>{props.flight.duration}</td>
           </tr>
 
-        </tbody>
-      </table>
 
     )
 }

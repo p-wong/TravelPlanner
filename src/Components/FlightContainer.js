@@ -93,7 +93,6 @@ export default class FlightContainer extends React.Component {
           <Typography variant="display1">Flights</Typography>
           <Button variant="raised" onClick={this.handleFormClicked}>Add a new flight</Button>
           {this.state.formClicked ? this.renderNewFlightForm() : null}
-          <br/>
           {this.state.outboundFlight ? < FlightList outboundFlight={this.state.outboundFlight} returnFlight={this.state.returnFlight} outboundDate={this.state.outboundDepartureDate} returnDate={this.state.returnDepartureDate}/> : alert('Oops, we didn\'t find any flights matching that search. Refresh the page and try again')}
         </div>
         </Paper>
