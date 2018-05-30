@@ -30,7 +30,7 @@ class PackingList extends React.Component {
     };
 
     return (
-      
+
       <Grid container spacing={12}>
       {this.props.categoryList.map(category => {
         return (
@@ -38,30 +38,13 @@ class PackingList extends React.Component {
             <Paper style={styles.container}>
               <Typography variant="title" style={styles.heading}>{category}</Typography><br/>
               {category === "Clothes" ? this.props.renderClothes() :
-              (category === "Toiletries" ? this.renderToiletries() :
+              (category === "Toiletries" ? this.props.renderToiletries() :
               (category === "Electronics" ? this.renderElectronics() : this.renderMiscellaneous()))}
             </Paper>
           </Grid>
         )
       })}
       </Grid>
-    )
-  }
-
-
-
-  renderToiletries = () => {
-    return (
-      this.props.toiletriesList.map(toiletries => {
-        return (
-          <span>
-            <Checkbox checked={this.props.checked} onClick={this.handleCheck}/>
-            <Typography variant="body2">{toiletries}</Typography>
-            <IconButton aria-label="Edit"><EditIcon /></IconButton>
-            <IconButton aria-label="Delete"><DeleteIcon /></IconButton>
-          </span>
-        )
-      })
     )
   }
 

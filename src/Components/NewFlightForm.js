@@ -7,6 +7,8 @@ export default class NewFlightForm extends React.Component {
   render () {
     return (
       <div>
+      <br/>
+      <br/>
         <form onSubmit={this.props.handleOutboundSubmit}>
           <div>
             <h4>Outbound Flight</h4>

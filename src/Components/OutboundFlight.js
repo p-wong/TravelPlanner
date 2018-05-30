@@ -3,6 +3,8 @@ import React from 'react';
 const OutboundFlight = (props) => {
     console.log(props)
     return (
+      <div>
+      <br/>
         <table className="ui celled striped padded">
           <tbody>
 
@@ -42,6 +44,7 @@ const OutboundFlight = (props) => {
 
           </tbody>
         </table>
+        </div>
     )
 }
 

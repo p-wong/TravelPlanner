@@ -20,6 +20,7 @@ class PackingContainer extends React.Component {
     editing: false,
     deleting: false,
     clothes: '',
+    toiletries: ''
   }
 
   //---------------------------------------------------------------------------------------------------------
@@ -28,6 +29,12 @@ class PackingContainer extends React.Component {
   handleFormClick = () => {
     this.setState({
       formClicked: !this.state.formClicked
+    })
+  }
+
+  handleEditClick = () => {
+    this.setState({
+      editing: !this.state.editing
     })
   }
 
@@ -71,19 +78,72 @@ class PackingContainer extends React.Component {
   //---------------------------------------------------------------------------------------------------------
   // EDIT / DELETE FOR CLOTHES LIST
 
-  handleEditClick = () => {
+  handleEditToiletriesChange = (event) => {
     this.setState({
+      toiletries: event.target.value
+    })
+  }
+
+  handleEditToiletriesSubmit = (key) => {
+    const copy = [...this.state.toiletriesList]
+    const index = copy.indexOf(key)
+    copy.splice(index, 1, this.state.toiletries)
+    this.setState({
+      toiletriesList: copy,
       editing: !this.state.editing
     })
   }
 
-  handleEditChange = (event) => {
+  handleDeleteToiletriesClick = (key) => {
+    const copy = [...this.state.toiletriesList]
+    const index = copy.indexOf(key)
+    copy.splice(index, 1)
+    this.setState({
+      toiletriesList: copy
+    })
+  }
+
+  renderToiletries = () => {
+    let styles = {
+      heading: {
+        'padding': '10px'
+      }
+    };
+    return (
+      this.state.toiletriesList.map(toiletries => {
+        return (
+          <span>
+            {this.state.editing
+              ?
+              <form onSubmit={(e) => (e.preventDefault(), this.handleEditToiletriesSubmit(toiletries))}>
+                <TextField placeholder={toiletries} onChange={this.handleEditToiletriesChange} />
+                <IconButton type="submit" aria-label="Save"><Save /></IconButton>
+              </form>
+              :
+              <Typography variant="title" style={styles.heading}>{toiletries}</Typography>
+            }
+            <IconButton aria-label="Edit" onClick={this.handleEditClick}><EditIcon /></IconButton>
+            <IconButton aria-label="Delete" onClick={() => this.handleDeleteToiletriesClick(toiletries)}><DeleteIcon /></IconButton>
+          </span>
+        )
+      })
+    )
+  }
+
+  //---------------------------------------------------------------------------------------------------------
+
+
+  //---------------------------------------------------------------------------------------------------------
+  // EDIT / DELETE FOR CLOTHES LIST
+
+
+  handleEditClothesChange = (event) => {
     this.setState({
       clothes: event.target.value
     })
   }
 
-  handleEditSubmit = (key) => {
+  handleEditClothesSubmit = (key) => {
     const copy = [...this.state.clothesList]
     const index = copy.indexOf(key)
     copy.splice(index, 1, this.state.clothes)
@@ -93,7 +153,7 @@ class PackingContainer extends React.Component {
     })
   }
 
-  handleDeleteClick = (key) => {
+  handleDeleteClothesClick = (key) => {
     const copy = [...this.state.clothesList]
     const index = copy.indexOf(key)
     copy.splice(index, 1)
@@ -103,21 +163,26 @@ class PackingContainer extends React.Component {
   }
 
   renderClothes = () => {
+    let styles = {
+      heading: {
+        'padding': '10px'
+      }
+    };
     return (
       this.state.clothesList.map(clothes => {
         return (
           <span>
             {this.state.editing
               ?
-              <form onSubmit={(e) => (e.preventDefault(), this.handleEditSubmit(clothes))}>
-                <TextField placeholder={clothes} onChange={this.handleEditChange} />
+              <form onSubmit={(e) => (e.preventDefault(), this.handleEditClothesSubmit(clothes))}>
+                <TextField placeholder={clothes} onChange={this.handleEditClothesChange} />
                 <IconButton type="submit" aria-label="Save"><Save /></IconButton>
               </form>
               :
-              <Typography variant="subheading">{clothes}</Typography>
+              <Typography variant="title" style={styles.heading}>{clothes}</Typography>
             }
             <IconButton aria-label="Edit" onClick={this.handleEditClick}><EditIcon /></IconButton>
-            <IconButton aria-label="Delete" onClick={() => this.handleDeleteClick(clothes)}><DeleteIcon /></IconButton>
+            <IconButton aria-label="Delete" onClick={() => this.handleDeleteClothesClick(clothes)}><DeleteIcon /></IconButton>
           </span>
         )
       })
@@ -147,6 +212,7 @@ class PackingContainer extends React.Component {
                     electronicsList={this.state.electronicsList}
                     miscellaneousList={this.state.miscellaneousList}
                     renderClothes={this.renderClothes}
+                    renderToiletries={this.renderToiletries}
                     />
     )
   }
