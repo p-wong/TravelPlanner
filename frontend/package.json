@@ -19,7 +19,12 @@
     "react-materialize": "^2.2.1",
     "react-moment": "^0.7.0",
     "react-scripts": "1.1.4",
+<<<<<<< HEAD:frontend/package.json
     "semantic-ui-css": "^2.3.1"
+=======
+    "semantic-ui-css": "^2.3.1",
+    "react-materialize": "^2.2.1"
+>>>>>>> a0e9ffa2658ada5a0c43466da18a49ffb7fff378:package.json
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,7 +1,12 @@
 import React from 'react';
 import FlightList from './FlightList';
+<<<<<<< HEAD:frontend/src/Components/FlightContainer.js
 import NewFlightForm from './NewFlightForm';
 import { Paper } from 'material-ui'
+=======
+import NewFlightForm from './NewFlightForm'
+import { Paper, Typography, Button } from 'material-ui'
+>>>>>>> a0e9ffa2658ada5a0c43466da18a49ffb7fff378:src/Components/FlightContainer.js
 
 export default class FlightContainer extends React.Component {
 
@@ -91,7 +96,12 @@ export default class FlightContainer extends React.Component {
        return (
         <Paper style={this.props.styles.mainContainer}>
          <div class="ui-grid-container">
+<<<<<<< HEAD:frontend/src/Components/FlightContainer.js
           <button onClick={this.handleFormClicked}>Add a new flight</button>
+=======
+          <Typography variant="display1">Flights</Typography>
+          <Button variant="raised" onClick={this.handleFormClicked}>Add a new flight</Button>
+>>>>>>> a0e9ffa2658ada5a0c43466da18a49ffb7fff378:src/Components/FlightContainer.js
           {this.state.formClicked ? this.renderNewFlightForm() : null}
           {this.state.outboundFlight ? < FlightList outboundFlight={this.state.outboundFlight} returnFlight={this.state.returnFlight} outboundDate={this.state.outboundDepartureDate} returnDate={this.state.returnDepartureDate}/> : alert('Oops, we didn\'t find any flights matching that search. Refresh the page and try again')}
         </div>

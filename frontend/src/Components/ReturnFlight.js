@@ -5,6 +5,7 @@ const ReturnFlight = (props) => {
 
       <table className="ui celled striped padded">
         <tbody>
+
           <tr>
             <td>{props.flight.airline}</td>
             <td>{props.flight.origin}</td>

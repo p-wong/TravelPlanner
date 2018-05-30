@@ -10,7 +10,6 @@ export default class AccommodationContainer extends React.Component {
     currentAccom: '',
 
     accommodations: {},
-
     formClicked: false,
 
     checkInDate: '',

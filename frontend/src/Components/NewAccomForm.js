@@ -33,15 +33,16 @@ export default class NewAccomForm extends React.Component {
   // if other, enter address, checkin and checkout times
 
   renderHotel = () => {
+
     return (
-      <form className={this.props.styles.container} noValidate onSubmit={this.props.handleHotelSubmit}>
-        <FormControl className={this.props.styles.formControl}>
+      <form className={this.props.styles.container} noValidate autoComplete="off" onSubmit={this.props.handleHotelSubmit}>
+        <FormControl>
           <TextField id="required"
             label="Hotel"
             className={this.props.styles.textField}
             name='hotelName'
             onChange={this.props.handleChange}
-            margin="normal"
+            margin="none"
           />
 
           <TextField id="required"
@@ -49,7 +50,7 @@ export default class NewAccomForm extends React.Component {
             className={this.props.styles.textField}
             name='hotelAddress'
             onChange={this.props.handleChange}
-            margin="normal"
+            margin="none"
           /> <br/>
 
           <TextField id="datetime-local" label="Check-In Date & Time" type="datetime-local"
@@ -63,7 +64,7 @@ export default class NewAccomForm extends React.Component {
           /><br/>
 
           <input type='submit' value='Add Reservation' />
-          </FormControl>
+        </FormControl>
       </form>
     )
   }
@@ -117,17 +118,21 @@ export default class NewAccomForm extends React.Component {
   }
 
   render () {
+    const styles = {
+      customWidth: {
+        width: 180,
+      },
+    };
 
     const { classes } = this.props;
-    console.log(this.props.styles.root)
     return (
       <div>
         <br/>
-        <form className={this.props.styles.root} autoComplete="off">
+        <form className={this.props.styles.root} autoComplete="off" >
           <FormControl className={this.props.styles.formControl}>
             {/*<Typography variant="title">Please select your accommodation type</Typography>*/}
-            <InputLabel htmlFor="">Accommodation Type</InputLabel><br/>
-              <Select value={this.props.currentAccom} onChange={this.props.handleCurrentAccomChange} autowidth="true" >
+            <InputLabel htmlFor="" >Accommodation Type</InputLabel><br/>
+              <Select value={this.props.currentAccom} onChange={this.props.handleCurrentAccomChange} style={styles.customWidth} >
                 <MenuItem value=""><em>None</em></MenuItem>
                 {this.renderAccomType()}
               </Select>

@@ -1,14 +1,12 @@
 import React from 'react';
 import { DatePickerInput } from 'rc-datepicker';
-
-
+import { Select, MenuItem } from 'material-ui'
 import 'rc-datepicker/lib/style.css';
 
 export default class NewFlightForm extends React.Component {
   render () {
     return (
-      <div className="ui raised segment">
-        <h3>Please enter some flight info</h3>
+      <div>
         <form onSubmit={this.props.handleOutboundSubmit}>
           <div>
             <h4>Outbound Flight</h4>
@@ -29,14 +27,14 @@ export default class NewFlightForm extends React.Component {
             <br></br>
             <label>
             Airline:
-              <select name="outboundAirline" onChange={this.props.handleChange}>
-                <option> -- </option>
+              <Select value={this.props.outboundAirline} name="outboundAirline" onChange={this.props.handleChange}>
+                <MenuItem> -- </MenuItem>
                 {this.props.airlines.map((airline, i) => {
                   return (
-                  <option key={i}> {airline} </option>
+                  <MenuItem value={airline} key={i}> {airline} </MenuItem>
                   );
                   })}
-              </select>
+              </Select>
             </label>
             <br></br>
             <label>
@@ -67,14 +65,14 @@ export default class NewFlightForm extends React.Component {
             <br></br>
             <label>
             Airline:
-              <select name="returnAirline" onChange={this.props.handleChange}>
-                <option> -- </option>
+              <Select value={this.props.returnAirline} name="returnAirline" onChange={this.props.handleChange}>
+                <MenuItem> -- </MenuItem>
                 {this.props.airlines.map((airline, i) => {
                   return (
-                  <option key={i}> {airline} </option>
+                  <MenuItem value={airline} key={i}> {airline} </MenuItem>
                   );
                   })}
-              </select>
+              </Select>
             </label>
             <br></br>
             <label>

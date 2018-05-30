@@ -24,7 +24,7 @@ class Main extends React.Component {
   // });
 
   state= {
-    trips: [],
+    trips: [{trip:{title: ''}}],
     editingTripId: null,
     formShown: false
   }
@@ -41,8 +41,8 @@ class Main extends React.Component {
     .catch(error => console.log(error))
   }
 
-  addNewTrip = () => {
-    axios.post('http://localhost:3001/api/v1/trips', {trip: {title: ''}})
+  addNewTrip = (event) => {
+    axios.post('http://localhost:3001/api/v1/trips', {trip: {title: event.target.value}})
     .then(res => {console.log(res)
       const trips= update(this.state.trips, { $splice: [[0, 0, res.data]]})
       this.setState({trips: trips, editingTripId: res.data.id})
@@ -58,11 +58,16 @@ class Main extends React.Component {
     return(
       <div>
         < Nav />
-      Trips:
+
+      <form onSubmit={this.addNewTrip}>
+        <input type="text" placeholder="Trip Name"/>
+        <input className="button" type="submit" value='Create New Trip' />
+      </form>
+
+      <h3>Trips:</h3>
         {this.state.trips.map(trip => {
             return(<Trip trip={trip} key={trip.id} addNewTrip={this.addNewTrip}/> )})
           }
-      <button onClick={this.renderTripForm} > New Trip </button>
 
       {(this.state.formShown === true) ? < TripForm /> : null}
 
